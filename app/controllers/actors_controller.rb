@@ -7,7 +7,8 @@ class ActorsController < ApplicationController
 
   def show
     @actor = Actor.find(params.fetch("id_to_display"))
-
+    @movie = Movie.where(actor_id: @actor.id)
+    
     render("actor_templates/show.html.erb")
   end
 

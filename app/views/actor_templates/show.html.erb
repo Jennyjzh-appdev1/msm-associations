@@ -36,6 +36,13 @@
   <dd>
     <img src="<%= @actor.image_url %>" width="320">
   </dd>
+  
+   <dt>
+    Number of characters
+  </dt>
+  <dd>
+   <%= Character.where(actor_id: @actor.id).count %>
+  </dd>
 
 </dl>
 
@@ -44,14 +51,7 @@
     Filmography
   </div>
   <ul class="list-group list-group-flush">
-    <% Movie.where(director_id: @actor.id).each do |movie| %>
-      <li class="list-group-item">
-        <a href="/movies/<%= movie.id %>">
-          <%= movie.title %>
-        </a> 
-        (<%= movie.year %>)
-      </li>
-    <% end %>
+    populate later
   </ul>
   
   <div class="card-header">
@@ -75,7 +75,8 @@
             Movie
           </label>
       
-          <input type="text" id="movie" name="movie" class="form-control">
+          <%= select_tag("movie_id", options_from_collection_for_select(Movie.all, :id, :title, @character.try(:movie_id)), :class => "form-control") %>
+
         </div>
       
         

@@ -28,17 +28,20 @@
       <dt>
         Movie
       </dt>
-      <dd>
-        <%= @character.movie_id %>
-      </dd>
+      <td>
+          <a href="/movies/<%= @character.movie_id %>">
+            <%= Movie.find(@character.movie_id).title %>
+          </a>
+        </td>
 
       <dt>
         Actor
       </dt>
-      <dd>
-        <%= @character.actor_id %>
-      </dd>
-
+       <td>
+          <a href="/actors/<%= @character.actor_id %>">
+            <%= Actor.find(@character.actor_id).name %>
+          </a>
+        </td>
       <dt>
         Name
       </dt>
