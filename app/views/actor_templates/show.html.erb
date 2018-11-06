@@ -39,6 +39,57 @@
 
 </dl>
 
+<div class="card" style="width: 50rem;">
+  <div class="card-header">
+    Filmography
+  </div>
+  <ul class="list-group list-group-flush">
+    <% Movie.where(director_id: @actor.id).each do |movie| %>
+      <li class="list-group-item">
+        <a href="/movies/<%= movie.id %>">
+          <%= movie.title %>
+        </a> 
+        (<%= movie.year %>)
+      </li>
+    <% end %>
+  </ul>
+  
+  <div class="card-header">
+    Add a new character for this actor
+  </div>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <form action="/create_movie" >
+        <!-- Label and input for title -->
+        <div class="form-group">
+          <label for="name">
+            Name
+          </label>
+      
+          <input type="text" id="name" name="name" class="form-control">
+        </div>
+      
+        <!-- Label and input for year -->
+        <div class="form-group">
+          <label for="movie">
+            Movie
+          </label>
+      
+          <input type="text" id="movie" name="movie" class="form-control">
+        </div>
+      
+        
+        <button class="btn btn-block btn-outline-secondary">
+          Create character
+        </button>
+      </form>
+    </li>
+  </ul>
+
+  </ul>
+</div>
+
+
 <a href="/delete_actor/<%= @actor.id %>" class="btn btn-danger">
   Delete actor
 </a>
